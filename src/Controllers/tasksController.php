@@ -11,7 +11,6 @@ class tasksController extends Controller
         // require(ROOT . 'Models/Task.php');
 
         $tasks = new Task();
-
         $d['tasks'] = $tasks->showAllTasks();
         $this->set($d);
         $this->render("index");
