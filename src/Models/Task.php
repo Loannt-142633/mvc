@@ -4,60 +4,54 @@ namespace MVC\Models;
 use MVC\Core\Model;
 use MVC\Config\Database;
 
-require_once('F:\xampp\htdocs\mvc\src\Config\db.php');
 
 class Task extends Model
 {
-    public function create($title, $description)
+    protected $id;
+    protected $title;
+    protected $description;
+    protected $created_at;
+    protected $updated_at;
+
+    public function getID()
     {
-        $sql = "INSERT INTO tasks (title, description, created_at, updated_at) VALUES (:title, :description, :created_at, :updated_at)";
-        $req = Database::getBdd()->prepare($sql);
-
-        return $req->execute([
-            'title' => $title,
-            'description' => $description,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-
-        ]);
+        return $this->id;
     }
-
-    public function showTask($id)
+    public function setID($id)
     {
-        $sql = "SELECT * FROM tasks WHERE id =" . $id;
-        $req = Database::getBdd()->prepare($sql);
-        $req->execute();
-        return $req->fetch();
+        $this->id = $id;
     }
-
-    public function showAllTasks()
+    public function getTitle()
     {
-        $sql = "SELECT * FROM tasks";
-        $req = Database::getBdd()->prepare($sql);
-        $req->execute();
-        return $req->fetchAll();
+        return $this->title;
     }
-
-    public function edit($id, $title, $description)
+    public function setTitle($title)
     {
-        $sql = "UPDATE tasks SET title = :title, description = :description , updated_at = :updated_at WHERE id = :id";
-
-        $req = Database::getBdd()->prepare($sql);
-
-        return $req->execute([
-            'id' => $id,
-            'title' => $title,
-            'description' => $description,
-            'updated_at' => date('Y-m-d H:i:s')
-
-        ]);
+        $this->title = $title;
     }
-
-    public function delete($id)
+    public function getDescription()
     {
-        $sql = 'DELETE FROM tasks WHERE id = ?';
-        $req = Database::getBdd()->prepare($sql);
-        return $req->execute([$id]);
+        return $this->description;
+    }
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+    public function getCreateAt()
+    {
+        return $this->created_at;
+    }
+    public function setCreateAt($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+    public function getUpdateAt()
+    {
+        return $this->updated_at;
+    }
+    public function setUpdateAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
     }
 }
 ?>

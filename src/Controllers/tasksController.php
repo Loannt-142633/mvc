@@ -3,6 +3,8 @@ namespace MVC\Controllers;
 
 use MVC\Core\Controller;
 use MVC\Models\Task;
+use MVC\Models\TaskRepository;
+use MVC\Models\TaskResourceModel;
 
 class tasksController extends Controller
 {
@@ -10,9 +12,9 @@ class tasksController extends Controller
     {
         // require(ROOT . 'Models/Task.php');
 
-        $tasks = new Task();
-
-        $d['tasks'] = $tasks->showAllTasks();
+        $taskss = new TaskResourceModel();
+        $tasks = new TaskRepository($taskss);
+        $d['tasks'] = $tasks->showAll();
         $this->set($d);
         $this->render("index");
     }
