@@ -37,11 +37,10 @@ class TaskRepository
 	public function edit($id, $title, $description)
 	{
 		$column = array(
-			'id' => $id,
             'title' => $title,
             'description' => $description,
             'updated_at' => date('Y-m-d H:i:s'));
-		$this->taskResourceModel->editTask('tasks', $column);
+		$this->taskResourceModel->editTaskk('tasks', $column, $id);
 	}
 
 }

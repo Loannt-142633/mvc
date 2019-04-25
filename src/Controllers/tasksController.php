@@ -10,7 +10,6 @@ class tasksController extends Controller
 {
     public function index()
     {
-        // require(ROOT . 'Models/Task.php');
 
         $tasks = new TaskRepository();
         $d['tasks'] = $tasks->showAll();
@@ -29,15 +28,13 @@ class tasksController extends Controller
     }
     public function edit($id)
     {
-        // require(ROOT . 'Models/Task.php');
         $task= new TaskRepository();
-
         $d["task"] = $task->showTask($id);
-
         if (isset($_POST["title"]))
         {
             $task->edit($id, $_POST["title"], $_POST["description"]);
             header("Location: " . WEBROOT . "tasks/index");
+                        
         }
         $this->set($d);
         $this->render("edit");
@@ -45,7 +42,6 @@ class tasksController extends Controller
 
     public function delete($id)
     {
-        // require(ROOT . 'Models/Task.php');
 
         $task = new TaskRepository();
         $task->delete($id);

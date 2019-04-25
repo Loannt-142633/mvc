@@ -41,13 +41,17 @@ class TaskResourceModel extends ResourceModel
         $sql = "SELECT * FROM $table WHERE id = $id";
         return parent::show($sql);
 	}
-	public function edit($table, $column)
+	public function editTaskk($table, $column, $id)
 	{
 		$str = '';
 		foreach ($column as $key => $value) {
 			$str .= $key.' = :'.$key.', ';
 		}
-		$sql = "UPDATE tasks SET ".substr($str, 0, -2);
-        parent::editTask($sql, $column);
+		$sql = "UPDATE $table SET ".substr($str, 0, -2)." WHERE id = :id";
+		$add = array(
+			'id' => $id
+		);
+		$columnn = $add + $column;
+        parent::editTask($sql, $columnn);
 	}
 }
