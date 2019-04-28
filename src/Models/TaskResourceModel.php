@@ -15,43 +15,26 @@ class TaskResourceModel extends ResourceModel
 	{
 		$this->table = 'tasks';
 	}
+	
+
 	public function showAll($table)
 	{
-		$sql= "SELECT * FROM $table";
-		return parent::showAll($sql);
+		return parent::showAll($table);
 	}
-	public function createTask($table, $column)
+	public function createTask($table, $model)
 	{
-		$column_name = '';
-		$column_value = '';
-		foreach ($column as $key => $value) {
-			$column_name .= $key.', ';
-			$column_value .= ':'.$key.',';
-		}
-		$sql = "INSERT INTO $table (".substr($column_name, 0, -2).") VALUES (".substr($column_value, 0, -1).")";
-		parent::createTask($sql, $column);
+		parent::create($table, $model);
 	}
 	public function delete($table, $id)
 	{
-		$sql = "DELETE FROM $table WHERE id = ?";
-		parent::delete($sql, $id);
+		parent::delete($table, $id);
 	}
 	public function showTask($table, $id)
 	{
-        $sql = "SELECT * FROM $table WHERE id = $id";
-        return parent::show($sql);
+        return parent::show($table, $id);
 	}
-	public function editTaskk($table, $column, $id)
+	public function editTask($table, $model, $id)
 	{
-		$str = '';
-		foreach ($column as $key => $value) {
-			$str .= $key.' = :'.$key.', ';
-		}
-		$sql = "UPDATE $table SET ".substr($str, 0, -2)." WHERE id = :id";
-		$add = array(
-			'id' => $id
-		);
-		$columnn = $add + $column;
-        parent::editTask($sql, $columnn);
+        parent::edit($table, $model, $id);
 	}
 }

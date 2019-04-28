@@ -53,5 +53,9 @@ class Task extends Model
     {
         $this->updated_at = $updated_at;
     }
+    public function getpro()
+    {
+        return get_object_vars($this);
+    }
 }
 ?>

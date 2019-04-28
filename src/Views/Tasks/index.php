@@ -2,7 +2,7 @@
 <div class="row col-md-12 centered">
     <table class="table table-striped custab">
         <thead>
-        <a href="/mvc/src/tasks/create/" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new task</a>
+        <a href="/mvc/src/tasks/create/" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new holder</a>
         <tr>
             <th>ID</th>
             <th>Task</th>

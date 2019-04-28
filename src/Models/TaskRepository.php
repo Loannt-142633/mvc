@@ -9,6 +9,7 @@ use MVC\Models\Task;
 class TaskRepository
 {
 	private $taskResourceModel;
+
 	function __construct()
 	{
 		$this->taskResourceModel = new TaskResourceModel();
@@ -17,14 +18,9 @@ class TaskRepository
 	{
         return $this->taskResourceModel->showAll('tasks');
 	}
-	public function createTask($title, $description)
+	public function createTask(Task $task)
 	{
-		$column = array(
-			'title' => $title,
-            'description' => $description,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'));
-        $this->taskResourceModel->createTask('tasks',$column);
+		$this->taskResourceModel->createTask('tasks', $task);
 	}
 	public function delete($id)
 	{
@@ -34,13 +30,9 @@ class TaskRepository
 	{
         return $this->taskResourceModel->showTask('tasks', $id);
 	}
-	public function edit($id, $title, $description)
+	public function edit($id, Task $task)
 	{
-		$column = array(
-            'title' => $title,
-            'description' => $description,
-            'updated_at' => date('Y-m-d H:i:s'));
-		$this->taskResourceModel->editTaskk('tasks', $column, $id);
+		$this->taskResourceModel->editTask('tasks', $task, $id);
 	}
 
 }
