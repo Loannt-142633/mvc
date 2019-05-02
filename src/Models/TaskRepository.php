@@ -24,7 +24,7 @@ class TaskRepository
 	}
 	public function delete($id)
 	{
-        $this->taskResourceModel->delete('tasks', $id);
+        $this->taskResourceModel->deleteTask('tasks', $id);
 	}
 	public function showTask($id)
 	{
@@ -32,7 +32,7 @@ class TaskRepository
 	}
 	public function edit($id, Task $task)
 	{
-		$this->taskResourceModel->editTask('tasks', $task, $id);
+		$this->taskResourceModel->editTask('tasks', $task);
 	}
 
 }

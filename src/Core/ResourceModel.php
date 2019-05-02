@@ -13,13 +13,7 @@ class ResourceModel
 	private $model;
 	private $table;
     
- //    public function getproperties($model)
-	// {
-	// 	$properties = get_object_vars($model);
-	// 	return $properties;
-	// }
-
-	public function showAll($table)
+ 	public function showAll($table)
 	{
         $sql = "SELECT * FROM $table";
         $req = Database::getBdd()->prepare($sql);
@@ -54,20 +48,17 @@ class ResourceModel
 		$req->execute();
         return $req->fetch();
 	}
-	public function edit($table, $model, $id)
+	public function edit($table, $model)
 	{
 		$str = '';
 		$column = $model->getpro();
-		print_r($column);
-		foreach ($column as $key => $value) {
+		$columnsql = $model->getpro();
+		unset($columnsql['created_at']);
+		unset($columnsql['id']);
+		foreach ($columnsql as $key => $value) {
 			$str .= $key.' = :'.$key.', ';
 		}
-        $a = substr($str, 10);
-        $b = substr($a, 0, 43);
-        $c = substr($a, 69);
-        $d = $b.$c;
-        $sql = "UPDATE $table SET ".substr($d, 0, -2)." WHERE id = :id";
-        echo $sql;
+        $sql = "UPDATE $table SET ".substr($str, 0, -2)." WHERE id = :id";
 		$req = Database::getBdd()->prepare($sql);
 		unset($column['created_at']);
 		$req->execute($column);

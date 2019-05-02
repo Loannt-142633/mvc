@@ -25,7 +25,7 @@ class TaskResourceModel extends ResourceModel
 	{
 		parent::create($table, $model);
 	}
-	public function delete($table, $id)
+	public function deleteTask($table, $id)
 	{
 		parent::delete($table, $id);
 	}
@@ -33,8 +33,8 @@ class TaskResourceModel extends ResourceModel
 	{
         return parent::show($table, $id);
 	}
-	public function editTask($table, $model, $id)
+	public function editTask($table, $model)
 	{
-        parent::edit($table, $model, $id);
+        parent::edit($table, $model);
 	}
 }
